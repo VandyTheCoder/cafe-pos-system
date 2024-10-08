@@ -1,0 +1,29 @@
+= link_to categories_path, class: "btn btn-light" do
+  %i.ti.ti-arrow-left
+  Back to Categories
+
+= link_to edit_category_path(@category), class: "btn btn-primary m-l-10" do
+  %i.ti.ti-pencil
+  Edit
+
+= link_to @category, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger m-l-10" do
+  %i.ti.ti-trash
+  Delete
+
+%br/
+%br/
+.row
+  .col-lg-12.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-category
+          Category Detail
+        %p
+          %b Name:
+          %b= @category.name
+        %p 
+          %b Description:
+        %p= @category.description
+      
+        

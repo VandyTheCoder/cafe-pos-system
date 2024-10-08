@@ -1,0 +1,63 @@
+/ Sidebar Start
+%aside.left-sidebar
+  / Sidebar scroll
+  %div
+    .brand-logo.d-flex.align-items-center.justify-content-between
+      = link_to root_url, class: "text-nowrap logo-img" do
+        %img{alt: "", src: "/images/logos/dark-logo.svg", width: "180"}/
+      #sidebarCollapse.close-btn.d-xl-none.d-block.sidebartoggler.cursor-pointer
+        %i.ti.ti-x.fs-8
+    / Sidebar navigation
+    %nav.sidebar-nav.scroll-sidebar{"data-simplebar" => ""}
+      %ul#sidebarnav
+        %li.nav-small-cap
+          %i.ti.ti-dots.nav-small-cap-icon.fs-4
+          %span.hide-menu Home
+        %li.sidebar-item
+          = link_to root_url, class: "sidebar-link #{menu_active?("homepage")}", "aria-expanded" => "false" do
+            %span
+              %i.ti.ti-layout-dashboard
+            %span.hide-menu Dashboard
+        %li.sidebar-item
+          = link_to pos_url, class: "sidebar-link #{menu_active?("pos")}", "aria-expanded" => "false" do
+            %span
+              %i.ti.ti-cash
+            %span.hide-menu Point of Sale
+        %li.sidebar-item
+          = link_to sales_url, class: "sidebar-link #{menu_active?("sales")}", "aria-expanded" => "false" do
+            %span
+              %i.ti.ti-report-money
+            %span.hide-menu Sale Records
+        %li.nav-small-cap
+          %i.ti.ti-dots.nav-small-cap-icon.fs-4
+          %span.hide-menu Inventory
+        %li.sidebar-item
+          = link_to products_url, class: "sidebar-link #{menu_active?("products")}", "aria-expanded" => "false" do
+            %span
+              %i.ti.ti-package
+            %span.hide-menu Products
+        %li.sidebar-item
+          = link_to categories_url, class: "sidebar-link #{menu_active?("categories")}", "aria-expanded" => "false" do
+            %span
+              %i.ti.ti-article
+            %span.hide-menu Categories
+        %li.sidebar-item
+          = link_to product_sizes_url, class: "sidebar-link #{menu_active?("product_sizes")}", "aria-expanded" => "false" do
+            %span
+              %i.ti.ti-ruler-measure
+            %span.hide-menu Product Sizes
+        %li.nav-small-cap
+          %i.ti.ti-dots.nav-small-cap-icon.fs-4
+          %span.hide-menu Settings
+        %li.sidebar-item
+          = link_to users_url, class: "sidebar-link #{menu_active?("users")}", "aria-expanded" => "false" do
+            %span
+              %i.ti.ti-users
+            %span.hide-menu Users
+      
+      .unlimited-access.hide-menu.bg-light-primary.position-relative.mb-7.mt-5.rounded
+        .d-flex
+          .unlimited-access-title.me-3
+            %h6.fw-semibold.fs-4.mb-6.text-dark.w-85 v0.0.1-beta
+            %a.btn.btn-primary.fs-2.fw-semibold.lh-sm{href: "https://vandysodanheang.info", target: "_blank"} By Vandy Sodanheang
+      

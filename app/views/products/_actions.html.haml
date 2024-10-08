@@ -1,0 +1,6 @@
+= link_to product, class: "btn btn-outline-info btn-sm" do
+  %i.ti.ti-eye
+= link_to edit_product_path(product), class: "btn btn-outline-primary btn-sm" do
+  %i.ti.ti-pencil
+= link_to product, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" do
+  %i.ti.ti-trash

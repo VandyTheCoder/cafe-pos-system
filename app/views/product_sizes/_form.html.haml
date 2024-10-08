@@ -1,0 +1,22 @@
+-# frozen_string_literal: true
+= simple_form_for(@product_size) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    .row
+      .col-sm-6
+        = f.input :name
+      .col-sm-6
+        = f.input :size
+    .row
+      .col-sm-6
+        = f.input :capacity
+      .col-sm-6
+        = f.input :unit
+    .row
+      .col-sm-12
+        = f.input :description
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"

@@ -1,0 +1,18 @@
+= link_to products_path, class: "btn btn-light" do
+  %i.ti.ti-arrow-left
+  Back to Products
+
+= link_to @product, class: "btn btn-info m-l-10" do
+  %i.ti.ti-eye
+  Preview
+
+%br/
+%br/
+.row
+  .col-lg-12.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-package
+          Edit Product
+        = render "form", category: @product

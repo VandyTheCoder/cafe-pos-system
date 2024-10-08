@@ -1,0 +1,21 @@
+.row
+  .col-lg-12.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-filter
+          Filter Sale Records
+        .row
+          .col-md-12
+            = datagrid_form_for @grid, :method => :get, :url => sales_path
+
+.row
+  .col-lg-12.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-report-money
+          All Sale Records
+        .table-responsive
+          = datagrid_table @grid
+        = paginate(@grid.assets)

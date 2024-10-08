@@ -1,0 +1,28 @@
+= link_to new_product_path, class: "btn btn-primary" do
+  %i.ti.ti-plus
+  Add New Product
+
+%br/
+%br/
+
+.row
+  .col-lg-12.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-filter
+          Filter Products
+        .row
+          .col-md-12
+            = datagrid_form_for @grid, :method => :get, :url => products_path
+
+.row
+  .col-lg-12.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-package
+          All Products
+        .table-responsive
+          = datagrid_table @grid
+        = paginate(@grid.assets)

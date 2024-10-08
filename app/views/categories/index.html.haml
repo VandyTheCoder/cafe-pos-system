@@ -1,0 +1,55 @@
+-# .row
+-#   .col-lg-12.d-flex.align-items-stretch
+-#     .card.w-100
+-#       .card-body.p-4
+-#         %h5.card-title.fw-semibold.mb-4
+-#           %i.ti.ti-filter
+-#           Filter Categories
+-#         .table-responsive
+
+= link_to new_category_path, class: "btn btn-primary" do
+  %i.ti.ti-plus
+  Add New Category
+
+%br/
+%br/
+
+.row
+  .col-lg-12.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-category
+          All Categories
+        .table-responsive
+          %table.table.text-nowrap.mb-0.align-middle
+            %thead.text-dark.fs-4
+              %tr
+                %th
+                  %h6.fw-semibold.mb-0 ID
+                %th
+                  %h6.fw-semibold.mb-0 Name
+                %th
+                  %h6.fw-semibold.mb-0 Description
+                %th
+                  %h6.fw-semibold.mb-0 Created At
+                %th
+                  %h6.fw-semibold.mb-0.text-end Action
+            %tbody
+              - @categories.each do |category|
+                %tr
+                  %td.border-bottom-0
+                    %h6.fw-semibold.mb-0= category.id
+                  %td.border-bottom-0
+                    %h6.fw-semibold.mb-1= category.name
+                  %td.border-bottom-0
+                    %p.mb-0.fw-normal= category.description&.truncate(50)
+                  %td.border-bottom-0
+                    %p.mb-0.fw-normal= category.created_at.strftime("%B %d, %Y")
+                  %td.border-bottom-0.text-end.action-column
+                    = link_to category, class: "btn btn-outline-info btn-sm" do
+                      %i.ti.ti-eye
+                    = link_to edit_category_path(category), class: "btn btn-outline-primary btn-sm" do
+                      %i.ti.ti-pencil
+                    = link_to category, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" do
+                      %i.ti.ti-trash

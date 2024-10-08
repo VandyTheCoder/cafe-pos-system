@@ -1,0 +1,32 @@
+-# frozen_string_literal: true
+= simple_form_for(@user) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    .row
+      .col-sm-6
+        = f.input :name
+      .col-sm-6
+        = f.input :picture
+    .row
+      - if !user.is_super_admin?
+        .col-sm-6
+          = f.input :gender, as: :select, collection: User::GENDER
+        .col-sm-6
+          = f.input :role, as: :select, collection: User::ROLES
+      - else
+        .col-sm-12
+          = f.input :gender, as: :select, collection: User::GENDER
+    - if current_user.admin? || current_user == @user
+      = f.input :email, required: true
+      .row
+        .col-md-6
+          = f.input :password, required: !@user.persisted?, hint: ("Leave it blank if you don't want to change it" if @user.persisted?)
+        .col-md-6
+          = f.input :password_confirmation, required: !@user.persisted?, hint: ("Make sure it is the same with the password" if @user.persisted?)
+    - else
+      = f.input :email, required: true
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"

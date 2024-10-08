@@ -1,0 +1,26 @@
+/ Header Start
+%header.app-header
+  %nav.navbar.navbar-expand-lg.navbar-light
+    %ul.navbar-nav
+      %li.nav-item.d-block.d-xl-none
+        %a#headerCollapse.nav-link.sidebartoggler.nav-icon-hover{href: "javascript:void(0)"}
+          %i.ti.ti-menu-2
+      %li.nav-item
+        %a.nav-link.nav-icon-hover{href: "javascript:void(0)"}
+          %i.ti.ti-bell-ringing
+          .notification.bg-primary.rounded-circle
+    #navbarNav.navbar-collapse.justify-content-end.px-0
+      %ul.navbar-nav.flex-row.ms-auto.align-items-center.justify-content-end
+        %li.nav-item.dropdown
+          %a#drop2.nav-link.nav-icon-hover{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "javascript:void(0)"}
+            - if current_user.picture.attached?
+              = image_tag current_user.picture.variant(resize: "35x35"), class: "rounded-circle", alt: ""
+            - else
+              %img.rounded-circle{alt: "", height: "35", src: "/images/profile/user-1.jpg", width: "35"}/
+          .dropdown-menu.dropdown-menu-end.dropdown-menu-animate-up{"aria-labelledby" => "drop2"}
+            .message-body
+              = link_to current_user, class: "d-flex align-items-center gap-2 dropdown-item" do
+                %i.ti.ti-user.fs-6
+                %p.mb-0.fs-3 My Account
+              = link_to destroy_user_session_path, method: :delete, class: "btn btn-outline-primary mx-3 mt-2 d-block", "aria-current" => "page" do
+                Logout

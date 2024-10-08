@@ -1,0 +1,7 @@
+.nested-fields.row
+  .col-sm-5
+    = f.input :product_size_id, as: :select, collection: ProductSize.all, label: 'Size'
+  .col-sm-5
+    = f.input :price, label: '$ Price'
+  .col-sm-2.text-end.remove-btn
+    = link_to_remove_association "X", f, class: "btn btn-outline-danger btn-sm"

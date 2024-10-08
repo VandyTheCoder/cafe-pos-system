@@ -1,0 +1,40 @@
+= link_to product_sizes_path, class: "btn btn-light" do
+  %i.ti.ti-arrow-left
+  Back to Product Sizes
+
+= link_to edit_product_size_path(@product_size), class: "btn btn-primary m-l-10" do
+  %i.ti.ti-pencil
+  Edit
+
+= link_to @product_size, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger m-l-10" do
+  %i.ti.ti-trash
+  Delete
+
+%br/
+%br/
+.row
+  .col-lg-12.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-ruler-measure
+          Product Size Detail
+        .table-responsive
+          %table.table.table-bordered.custom-table
+            %tbody
+              %tr
+                %td{style: "width: 20%"} Name
+                %th= @product_size.name
+              %tr
+                %td Size
+                %th= @product_size.size
+              %tr
+                %td Capacity
+                %th= @product_size.capacity
+              %tr
+                %td Unit
+                %th= @product_size.unit
+              %tr
+                %td Description
+                %th= @product_size.description
+        

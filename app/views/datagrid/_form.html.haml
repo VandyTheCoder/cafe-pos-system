@@ -1,0 +1,10 @@
+= form_for grid, options do |f|
+  .row
+    - grid.filters.each do |filter|
+      .col-md-3
+        = f.datagrid_label filter, class: 'grid-filter-label'
+        = f.datagrid_filter filter, class: 'form-control grid-filter-input'
+  %br/
+  .datagrid-actions
+    = f.submit I18n.t("datagrid.form.search").html_safe, class: "datagrid-submit btn btn-primary"
+    = link_to I18n.t('datagrid.form.reset').html_safe, url_for(grid.to_param => {}), :class => "datagrid-reset btn btn-light"

@@ -1,0 +1,123 @@
+%br/
+%br/
+.row
+  .col-6
+    = link_to root_path, class: "btn btn-light" do
+      %i.ti.ti-arrow-left
+      Back to System
+  .col-6.text-end
+    %button.btn.btn-primary{type: "button", id: "btn-checkout", "data-bs-target" => "#checkout-modal", "data-bs-toggle" => "modal", type: "button", "disabled" => ""}
+      %i.ti.ti-shopping-cart
+      Checkout
+%br/
+
+#checkout-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "checkout-modal-label", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h1#checkout-modal-label.modal-title.fs-5
+          %i.ti.ti-shopping-cart
+          Are You Sure?
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
+      .modal-body
+        .table-responsive
+          %table.table
+            %tbody
+              %tr
+                %td
+                  %i.ti.ti-cup
+                  Total Drink
+                %th#checkout-total-drink
+                  0 Drink
+              %tr
+                %td
+                  %i.ti.ti-cash
+                  Total Price
+                %th#checkout-total-price
+                  $ 0.00
+        .row
+          .col-sm-12
+            %input#customer-name-input.form-control{placeholder: "Customer's Name", type: "text"}
+            %br/ 
+            %input#customer-phone-number-input.form-control{placeholder: "Phone Number", type: "text"}
+            %br/
+            %textarea#customer-note-input.form-control{placeholder: "Note", rows: "3"}
+      .modal-footer
+        %button.btn.btn-light{"data-bs-dismiss" => "modal", type: "button"} Close
+        %button#btn-submit-checkout.btn.btn-primary{type: "button"} Check Out
+
+#checkout-success-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "checkout-success-modal-label", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h1#checkout-success-modal-label.modal-title.fs-5
+          %i.ti.ti-check
+          Checked Out!
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
+      .modal-body
+        %p Your order has been successfully checked out.
+        %p Thank you for using our system.
+        %p Page will be redirected in 3 seconds.
+      .modal-footer
+        %button.btn.btn-success{"data-bs-dismiss" => "modal", type: "button"} OK
+
+#checkout-error-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "checkout-error-modal-label", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h1#checkout-error-modal-label.modal-title.fs-5
+          %i.ti.ti-alert
+          There Was An Error
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
+      .modal-body
+        %p There was an error when checking out your order.
+        %p Please try again later.
+      .modal-footer
+        %button.btn.btn-danger{"data-bs-dismiss" => "modal", type: "button"} Close
+        
+
+.row
+  .col-sm-12.col-lg-7.d-flex.align-items-stretch
+    .card.w-100.m-h-50rem
+      .card-body.p-4
+        .row
+          .col-md-6
+            %h5.card-title.fw-semibold.mb-4
+              %i.ti.ti-cash
+              Point of Sale
+          .col-md-6
+            %input#search-products.form-control{placeholder: "Search Product", type: "text"}
+        %br/
+        .row#products-container
+                    
+  
+  .col-sm-12.col-lg-5.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-shopping-cart
+          Order Summary
+          %span#summary-total-price{style: 'float: right;'}
+            $ 0.00
+        %hr/
+        .row
+          .col-md-12
+            .table-responsive
+              %table.table
+                %thead
+                  %tr
+                    %th{style: "width: 35%"} Product
+                    %th.text-center{style: "width: 25%"} Sugar
+                    %th.text-center{style: "width: 10%"} Size
+                    %th.text-center{style: "width: 20%"} $ Price
+                    %th.text-center{style: "width: 10%"}
+                %tbody#order-summary-container
+                  %tr
+                    %td.text-end{colspan: "3"} Total
+                    %td.text-center#total-price
+                      %strong
+                        $ 0.00
+                    %td.text-center
+                      %button#btn-remove-all-products.btn.btn-danger.btn-sm{type: "button"}
+                        %i.ti.ti-trash
+            

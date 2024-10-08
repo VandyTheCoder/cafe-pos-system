@@ -1,0 +1,32 @@
+.card.mb-0
+  .card-body
+    %a.text-nowrap.logo-img.text-center.d-block.py-3.w-100{href: "./index.html"}
+      %img{alt: "", src: "/images/logos/dark-logo.svg", width: "180"}/
+    %hr/
+    - if flash.present?
+      - flash.each do |type, msg|
+        - if msg == "You need to sign in or sign up before continuing."
+          %br/
+        - elsif type == "alert"
+          .alert.alert-danger{role: "alert"}
+            %b Message:
+            = msg
+        - else
+          .alert.alert-info
+            %b Message:
+            = msg
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .mb-3
+        = f.input :email, required: false, autofocus: true, input_html: { autocomplete: "email", "aria-describedby" => "emailHelp" }
+      .mb-4
+        = f.input :password, required: false, input_html: { autocomplete: "current-password" }
+      .d-flex.align-items-center.justify-content-between.mb-4
+        .form-check
+          = f.input :remember_me, as: :boolean, input_html: { class: "form-check-input" } if devise_mapping.rememberable?
+          -# %input#flexCheckChecked.form-check-input.primary{checked: "checked", type: "checkbox", value: ""}/
+          -# %label.form-check-label.text-dark{for: "flexCheckChecked"}
+          -#   Remeber this Device
+      = f.button :submit, "Log in", class: 'btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2'
+      .d-flex.align-items-center.justify-content-center
+        %p.fs-4.mb-0.fw-bold Created By
+        %a.text-primary.fw-bold.ms-2{ href: "https://vandysodanheang.info", target: "_blank" } Vandy Sodanheang

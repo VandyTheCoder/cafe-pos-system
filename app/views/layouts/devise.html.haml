@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %title= content_for(:title) || "Cafe Pos System"
+    
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+
+    = csrf_meta_tags
+    = csp_meta_tag
+    = yield :head
+
+    %link{:href => "/manifest.json", :rel => "manifest"}/
+    %link{:href => "/icon.png", :rel => "icon", :type => "image/png"}/
+    %link{:href => "/icon.svg", :rel => "icon", :type => "image/svg+xml"}/
+    %link{:href => "/icon.png", :rel => "apple-touch-icon"}/
+
+    = stylesheet_link_tag    'devise', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'devise', 'data-turbolinks-track': 'reload'
+
+  %body
+    #main-wrapper.page-wrapper{"data-header-position" => "fixed", "data-layout" => "vertical", "data-navbarbg" => "skin6", "data-sidebar-position" => "fixed", "data-sidebartype" => "full"}
+      .position-relative.overflow-hidden.radial-gradient.min-vh-100.d-flex.align-items-center.justify-content-center
+        .d-flex.align-items-center.justify-content-center.w-100
+          .row.justify-content-center.w-100
+            .col-md-8.col-lg-6.col-xxl-3
+              = yield

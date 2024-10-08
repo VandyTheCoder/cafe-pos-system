@@ -1,0 +1,54 @@
+= link_to new_product_size_path, class: "btn btn-primary" do
+  %i.ti.ti-plus
+  Add New Size
+
+%br/
+%br/
+
+.row
+  .col-lg-12.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-ruler-measure
+          All Product Sizes
+        .table-responsive
+          %table.table.text-nowrap.mb-0.align-middle
+            %thead.text-dark.fs-4
+              %tr
+                %th
+                  %h6.fw-semibold.mb-0 ID
+                %th
+                  %h6.fw-semibold.mb-0 Name
+                %th
+                  %h6.fw-semibold.mb-0 Size
+                %th
+                  %h6.fw-semibold.mb-0 Capicity
+                %th
+                  %h6.fw-semibold.mb-0 Unit
+                %th
+                  %h6.fw-semibold.mb-0 Created At
+                %th
+                  %h6.fw-semibold.mb-0.text-end Action
+            %tbody
+              - @product_sizes.each do |product_size|
+                %tr
+                  %td.border-bottom-0
+                    %h6.fw-semibold.mb-0= product_size.id
+                  %td.border-bottom-0
+                    %h6.fw-semibold.mb-1= product_size.name
+                  %td.border-bottom-0
+                    %h6.fw-semibold.mb-1= product_size.size
+                  %td.border-bottom-0
+                    %h6.fw-semibold.mb-1= product_size.capacity
+                  %td.border-bottom-0
+                    %h6.fw-semibold.mb-1= product_size.unit
+                  %td.border-bottom-0
+                    %p.mb-0.fw-normal= product_size.created_at.strftime("%B %d, %Y")
+                  %td.border-bottom-0.text-end.action-column
+                    = link_to product_size, class: "btn btn-outline-info btn-sm" do
+                      %i.ti.ti-eye
+                    = link_to edit_product_size_path(product_size), class: "btn btn-outline-primary btn-sm" do
+                      %i.ti.ti-pencil
+                    = link_to product_size, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" do
+                      %i.ti.ti-trash

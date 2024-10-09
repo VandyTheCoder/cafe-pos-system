@@ -23,6 +23,7 @@ gem "datagrid",               "~> 1.8", ">= 1.8.2"
 gem "kaminari"
 gem "image_processing",       "~> 1.13"
 gem "cocoon",                 "~> 1.2", ">= 1.2.15"
+gem "ostruct",                "~> 0.6.0"
 
 group :development, :test do
   gem "debug",                                platforms: %i[ mri windows ], require: "debug/prelude"

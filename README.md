@@ -1,24 +1,75 @@
-# README
+# Cafe POS System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Cafe POS System is an open-source Point of Sale (POS) system for cafes, built with Ruby on Rails. This system allows cafe owners to manage orders, products, and customers efficiently.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- User Authentication (Devise)
+- Dashboard
+- Point of Sale
+- Sale Records
+- Product Management
+- Responsive Design (Bootstrap)
+- Pagination (Kaminari)
+- File Uploads (Image Processing)
+- Dynamic Forms (Cocoon)
+- Data Grids (Datagrid)
 
-* System dependencies
+## Getting Started
 
-* Configuration
+### Prerequisites
 
-* Database creation
+- Ruby 3.3.5
+- Rails 7.2.1
+- PostgreSQL
 
-* Database initialization
+### Installation
 
-* How to run the test suite
+1. Clone the repository:
 
-* Services (job queues, cache servers, search engines, etc.)
+  ```sh
+  git clone https://github.com/yourusername/cafe-pos-system.git
+  cd cafe-pos-system
+  ```
 
-* Deployment instructions
+2. Install dependencies:
 
-* ...
+  ```sh
+  bundle install
+  ```
+
+3. Set up the database:
+
+  ```sh
+  rails db:create
+  rails db:migrate
+  rails db:seed
+  ```
+
+4. Start the Rails server:
+
+  ```sh
+  rails server
+  ```
+
+1. Open your browser and navigate to `http://localhost:3000`.
+
+### Contributing
+We welcome contributions to improve the Cafe POS System. To contribute, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature-branch).
+3. Make your changes and commit them (git commit -m 'Add new feature').
+4. Push to the branch (git push origin feature-branch).
+5. Create a new Pull Request.
+
+### License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+### Acknowledgements
+- Ruby on Rails
+- Bootstrap
+- Devise
+
+### Contact
+For any inquiries or support, please contact vandysodanheang@gmail.com.

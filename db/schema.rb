@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_05_060811) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_09_085716) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_05_060811) do
     t.index ["product_size_id"], name: "index_product_product_sizes_on_product_size_id"
   end
 
+  create_table "product_sales", force: :cascade do |t|
+    t.bigint "sale_id", null: false
+    t.float "price"
+    t.string "sugar_level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_product_size_id"
+    t.index ["product_product_size_id"], name: "index_product_sales_on_product_product_size_id"
+    t.index ["sale_id"], name: "index_product_sales_on_sale_id"
+  end
+
   create_table "product_sizes", force: :cascade do |t|
     t.string "name"
     t.string "size"
@@ -99,6 +110,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_05_060811) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "amount"
+    t.integer "total_items"
     t.index ["user_id"], name: "index_sales_on_user_id"
   end
 
@@ -122,6 +135,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_05_060811) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "product_product_sizes", "product_sizes"
   add_foreign_key "product_product_sizes", "products"
+  add_foreign_key "product_sales", "product_product_sizes"
+  add_foreign_key "product_sales", "sales"
   add_foreign_key "products", "categories"
   add_foreign_key "sales", "users"
 end

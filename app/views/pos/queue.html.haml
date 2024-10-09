@@ -1,0 +1,74 @@
+%br/
+%br/
+.row
+  .col-12
+    = link_to root_path, class: "btn btn-light" do
+      %i.ti.ti-arrow-left
+      Back to System
+    = link_to pos_path, class: "btn btn-primary m-l-10" do
+      %i.ti.ti-cash
+      Point of Sale
+%br/
+
+- if notice.present?
+  .row
+    .col-md-12
+      .alert.alert-success{role: "alert"}
+        %b Message: 
+        = notice
+
+.row
+  .col-sm-12.col-lg-6.d-flex.align-items-stretch
+    .card.w-100.m-h-50rem
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-hourglass-high
+          Pending Orders
+        .table-responsive
+          %table.table
+            %thead
+              %tr
+                %th Code
+                %th Name
+                %th Phone Number
+                %th Amount
+                %th Items
+                %th.text-end Action
+            %tbody
+              - @pending_sales.each do |sale|
+                %tr
+                  %td= sale.code.truncate(10)
+                  %td= sale.customer_name
+                  %td= sale.customer_phone_number
+                  %td= "$ #{sale.amount&.round(2)}"
+                  %td= "#{sale.total_items} Items"
+                  %td.text-end
+                    = link_to cancel_pos_path(id: sale.id), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm m-l-10" do
+                      %i.ti.ti-trash
+                    = link_to in_progress_pos_path(id: sale.id), method: :patch, class: "btn btn-primary btn-sm" do
+                      %i.ti.ti-arrow-right
+                %tr
+                  %td
+                    %b Items
+                  %td{colspan: 5}
+                    %table.table
+                      - sale.product_sales.each do |product_sale|
+                        %tr
+                          %th= product_sale.product_product_size.product.name
+                          %th= product_sale.product_product_size.product_size.size
+                          %th= "#{product_sale.sugar_level} %"
+                          %th= "$ #{product_sale.price&.round(2)}"
+                %tr
+                  %td{colspan: 6}
+                    %b Note:
+                    = sale.note
+                %tr
+                  %td{colspan: 6}
+                    
+  .col-sm-12.col-lg-6.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-clock-hour-4
+          In Progress Orders
+        .row

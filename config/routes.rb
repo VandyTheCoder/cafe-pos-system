@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     collection do
       get :search
       post :check_out
+      get :queue
+      patch :in_progress
+      patch :cancel
+      patch :complete
     end
   end
 

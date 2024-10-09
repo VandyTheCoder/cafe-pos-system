@@ -1,5 +1,6 @@
 class PosController < ApplicationController
   layout :set_layout
+  before_action :set_sale, only: %i[ in_progress cancel complete ]
 
   def index
   end
@@ -32,27 +33,78 @@ class PosController < ApplicationController
   end
 
   def check_out
-    check_out_params = params.require(:check_out).permit!
-    check_out_hash = check_out_params.to_h
-    check_out_hash.each do |key, value|
-      # Process each item in the hash
-      puts "Product ID: #{value['product_id']}, Size ID: #{value['size_id']}, Sugar Level: #{value['sugar_level']}"
-    end
-    sale = Sale.new do |s|
-      s.customer_name = params['customer_name']
-      s.customer_phone_number = params['customer_phone_number']
-      s.note = params['note']
-      s.user = current_user
-    end
-    if sale.save!
+    sale = build_sale
+    if sale.save
       render json: { message: "Check out success" }
     else
       render json: { error: sale.errors.full_messages.join(", ") }, status: :unprocessable_entity
     end
   end
 
+  def queue
+    @pending_sales = Sale.where(status: "Pending").order(:created_at)
+    @in_progress_sales = Sale.where(status: "In Progress").order(:created_at)
+  end
+
+  def in_progress
+    if @sale.update(status: "In Progress")
+      redirect_to queue_pos_path, notice: "Sale-#{@sale.code} has been moved to in progress!"
+    else
+      render :queue, notice: "Failed to move Sale-#{@sale.code} to in progress!"
+    end
+  end
+
+  def cancel
+    @sale = Sale.find(params[:id])
+    if @sale.update(status: "Canceled")
+      redirect_to queue_pos_path, notice: "Sale-#{@sale.code} has been canceled!"
+    else
+      render :queue, notice: "Failed to cancel Sale-#{@sale.code}!"
+    end
+  end
+
+  def complete
+    @sale = Sale.find(params[:id])
+    if @sale.update(status: "Completed")
+      redirect_to queue_pos_path, notice: "Sale-#{@sale.code} has been completed!"
+    else
+      render :queue, notice: "Failed to complete Sale-#{@sale.code}!"
+    end
+  end
+
   private
     def set_layout
       'pos'
+    end
+
+    def set_sale
+      @sale = Sale.find(params[:id])
+    end
+
+    def build_sale
+      Sale.new do |s|
+        s.customer_name = params['customer_name']
+        s.customer_phone_number = params['customer_phone_number']
+        s.note = params['note']
+        s.user = current_user
+        s.product_sales = build_product_sales
+        s.amount = s.product_sales.sum(&:price)
+        s.total_items = s.product_sales.size
+      end
+    end
+  
+    def build_product_sales
+      check_out_params.map do |_, value|
+        price = ProductProductSize.find(value['size_id']).price
+        ProductSale.new do |ps|
+          ps.product_product_size_id = value['size_id']
+          ps.price = price
+          ps.sugar_level = value['sugar_level']
+        end
+      end
+    end
+  
+    def check_out_params
+      params.require(:check_out).permit!.to_h
     end
 end

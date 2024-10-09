@@ -17,6 +17,7 @@ services:
     volumes:
       - ./log:/rails/log
       - ./tmp:/rails/tmp
+      - ./storage:/rails/storage
     depends_on:
       - db
 

@@ -44,10 +44,9 @@ CafePOS.PosIndex =
       phone_number = $("#customer-phone-number-input").val()
       note = $("#customer-note-input").val()
       $("#order-summary-container tr.product-item").each (index, element) =>
-        id = $(element).data("product-id")
         size_id = $(element).data("size-id")
         sugar_level = $(element).find("select.sugar-level-select").val()
-        check_out_data.push({ product_id: id, size_id: size_id, sugar_level: sugar_level })
+        check_out_data.push({ size_id: size_id, sugar_level: sugar_level })
       $.ajax
         url: '/pos/check_out'
         type: 'POST'
@@ -65,6 +64,7 @@ CafePOS.PosIndex =
             window.location.href = "/pos"
           , 3000)
         error: (error) =>
+          $("#checkout-modal").modal("hide")
           $("#checkout-error-modal").modal("show")
 
   fetchProducts: (search_value) ->

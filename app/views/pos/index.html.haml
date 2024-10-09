@@ -5,11 +5,21 @@
     = link_to root_path, class: "btn btn-light" do
       %i.ti.ti-arrow-left
       Back to System
+    = link_to queue_pos_path, class: "btn btn-warning m-l-10" do
+      %i.ti.ti-hourglass-high
+      Queue
   .col-6.text-end
     %button.btn.btn-primary{type: "button", id: "btn-checkout", "data-bs-target" => "#checkout-modal", "data-bs-toggle" => "modal", type: "button", "disabled" => ""}
       %i.ti.ti-shopping-cart
       Checkout
 %br/
+
+- if notice.present?
+  .row
+    .col-md-12
+      .alert.alert-success{role: "alert"}
+        %b Message: 
+        = notice
 
 #checkout-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "checkout-modal-label", tabindex: "-1"}
   .modal-dialog

@@ -1,24 +1,69 @@
-%p#notice= notice
+= link_to sales_path, class: "btn btn-light" do
+  %i.ti.ti-arrow-left
+  Back to Sale Records
 
-%p
-  %b Code:
-  = @sale.code
-%p
-  %b Status:
-  = @sale.status
-%p
-  %b Customer name:
-  = @sale.customer_name
-%p
-  %b Customer phone number:
-  = @sale.customer_phone_number
-%p
-  %b Note:
-  = @sale.note
-%p
-  %b User:
-  = @sale.user
+%br/
+%br/
+.row
+  .col-sm-12.col-lg-5.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-report-money
+          Sale Record Detail
+          = render_sale_status(@sale, "float: right;")
+        .table-responsive
+          %table.table.table-bordered.custom-table
+            %tbody
+              %tr
+                %td{style: "width: 30%"} Code
+                %th= @sale.code
+              %tr
+                %td Customer
+                %th= @sale.customer_name
+              %tr
+                %td Phone
+                %th= @sale.customer_phone_number
+              %tr
+                %td Sold By
+                %th= link_to @sale.user.name, user_path(@sale.user)
+              %tr
+                %td Date
+                %th= @sale.created_at.strftime("%B %d, %Y %I:%M %p")
+              %tr
+                %td{colspan: 2}
+                  Note:
+                  = @sale.note
 
-= link_to 'Edit', edit_sale_path(@sale)
-\|
-= link_to 'Back', sales_path
+  .col-sm-12.col-lg-7.d-flex.align-items-stretch
+    .card.w-100
+      .card-body.p-4
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-package
+          Sale Items
+          %span.badge.bg-primary.rounded-3.fw-semibold{style: "float: right;"}
+            = "#{@sale.total_items} Item(s)"
+        .table-responsive
+          %table.table
+            %thead
+              %tr
+                %th Picture
+                %th Product
+                %th.text-center Size
+                %th.text-center Sugar
+                %th.text-center $ Price
+            %tbody
+              - @sale.product_sales.each do |product_sale|
+                - product = product_sale.product_product_size.product
+                %tr
+                  %td= image_tag product.picture_as_thumbnail, class: "img-fluid rounded", style: "max-width: 100px" if product.picture.attached?
+                  %td= product.name
+                  %td.text-center= product_sale.product_product_size.product_size.size
+                  %td.text-center= "#{product_sale.sugar_level} %"
+                  %td.text-center= "$ #{product_sale.price.round(2)}"
+              %tr
+                %td.text-end{colspan: 4}
+                  %b Total:
+                %td.text-center
+                  %b= "$ #{'%.2f' % @sale.amount}"
+

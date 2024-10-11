@@ -1,7 +1,7 @@
 class SalesGrid < BaseGrid
 
   scope do
-    Sale
+    Sale.order(created_at: :desc)
   end
 
   filter(:status, :enum, select: -> { Sale::STATUS }) { |value| where(status: value) }
@@ -10,15 +10,7 @@ class SalesGrid < BaseGrid
   filter(:created_at_lt, :date, header: "Created To") { |value| where("created_at <= ?", value) }
 
   column(:status, html: true) do |record|
-    if record.pending?
-      content_tag(:span, "Pending", class: "badge bg-secondary rounded-3 fw-semibold")
-    elsif record.in_progress?
-      content_tag(:span, "In Progress", class: "badge bg-warning rounded-3 fw-semibold")
-    elsif record.canceled?
-      content_tag(:span, "Canceled", class: "badge bg-danger rounded-3 fw-semibold")
-    elsif record.completed?
-      content_tag(:span, "Completed", class: "badge bg-success rounded-3 fw-semibold")
-    end
+    render_sale_status(record, '')
   end
   column(:code)
   column(:amount) do |record|

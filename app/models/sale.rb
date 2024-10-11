@@ -6,7 +6,6 @@ class Sale < ApplicationRecord
 
   STATUS = ["Pending", "In Progress", "Canceled", "Completed"]
 
-  default_scope { order(created_at: :desc) }
   scope :code_like, -> (value) { where('code iLIKE ?', "%#{value.squish}%") }
 
   STATUS.each do |status_name|

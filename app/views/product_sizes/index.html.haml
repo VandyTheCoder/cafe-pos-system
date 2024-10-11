@@ -17,8 +17,6 @@
             %thead.text-dark.fs-4
               %tr
                 %th
-                  %h6.fw-semibold.mb-0 ID
-                %th
                   %h6.fw-semibold.mb-0 Name
                 %th
                   %h6.fw-semibold.mb-0 Size
@@ -33,8 +31,6 @@
             %tbody
               - @product_sizes.each do |product_size|
                 %tr
-                  %td.border-bottom-0
-                    %h6.fw-semibold.mb-0= product_size.id
                   %td.border-bottom-0
                     %h6.fw-semibold.mb-1= product_size.name
                   %td.border-bottom-0

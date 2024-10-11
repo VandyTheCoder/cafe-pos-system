@@ -4,7 +4,7 @@ class SalesController < ApplicationController
   # GET /sales
   def index
     @grid = SalesGrid.new(grid_params) do |scope|
-      scope.page(params[:page])
+      scope.page(params[:page]).per(10)
     end
   end
 

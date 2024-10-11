@@ -1,7 +1,7 @@
 class ProductsGrid < BaseGrid
 
   scope do
-    Product
+    Product.order(:created_at)
   end
 
   filter(:name, :string) { |value| where("name ilike ?", "%#{value}%") }

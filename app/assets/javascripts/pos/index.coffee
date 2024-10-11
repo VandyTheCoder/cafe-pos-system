@@ -62,7 +62,7 @@ CafePOS.PosIndex =
           setTimeout(() =>
             $("#checkout-success-modal").modal("hide")
             window.location.href = "/pos"
-          , 3000)
+          , 1000)
         error: (error) =>
           $("#checkout-modal").modal("hide")
           $("#checkout-error-modal").modal("show")

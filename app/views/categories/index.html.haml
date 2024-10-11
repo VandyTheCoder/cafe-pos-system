@@ -26,8 +26,6 @@
             %thead.text-dark.fs-4
               %tr
                 %th
-                  %h6.fw-semibold.mb-0 ID
-                %th
                   %h6.fw-semibold.mb-0 Name
                 %th
                   %h6.fw-semibold.mb-0 Description
@@ -38,8 +36,6 @@
             %tbody
               - @categories.each do |category|
                 %tr
-                  %td.border-bottom-0
-                    %h6.fw-semibold.mb-0= category.id
                   %td.border-bottom-0
                     %h6.fw-semibold.mb-1= category.name
                   %td.border-bottom-0

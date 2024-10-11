@@ -24,33 +24,33 @@
         %h5.card-title.fw-semibold.mb-4
           %i.ti.ti-hourglass-high
           Pending Orders
+          %span.badge.bg-secondary.rounded-3.fw-semibold.float-rigt
+            = "#{@pending_sales.size} Orders"
         .table-responsive
-          %table.table
+          %table.table.table-striped
             %thead
               %tr
                 %th Code
                 %th Name
-                %th Phone Number
                 %th Amount
                 %th Items
                 %th.text-end Action
             %tbody
               - @pending_sales.each do |sale|
                 %tr
-                  %td= sale.code.truncate(10)
+                  %td= sale.code.truncate(15)
                   %td= sale.customer_name
-                  %td= sale.customer_phone_number
-                  %td= "$ #{sale.amount&.round(2)}"
-                  %td= "#{sale.total_items} Items"
+                  %td
+                    %b= "$ #{sale.amount&.round(2)}"
+                  %td
+                    %b= "#{sale.total_items} Items"
                   %td.text-end
                     = link_to cancel_pos_path(id: sale.id), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm m-l-10" do
                       %i.ti.ti-trash
                     = link_to in_progress_pos_path(id: sale.id), method: :patch, class: "btn btn-primary btn-sm" do
                       %i.ti.ti-arrow-right
                 %tr
-                  %td
-                    %b Items
-                  %td{colspan: 5}
+                  %td{colspan: 6}
                     %table.table
                       - sale.product_sales.each do |product_sale|
                         %tr
@@ -71,4 +71,43 @@
         %h5.card-title.fw-semibold.mb-4
           %i.ti.ti-clock-hour-4
           In Progress Orders
-        .row
+          %span.badge.bg-warning.rounded-3.fw-semibold.float-rigt
+            = "#{@in_progress_sales.size} Orders"
+        .table-responsive
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Code
+                %th Name                
+                %th Amount
+                %th Items
+                %th.text-end Action
+            %tbody
+              - @in_progress_sales.each do |sale|
+                %tr
+                  %td= sale.code.truncate(15)
+                  %td= sale.customer_name
+                  %td
+                    %b= "$ #{sale.amount&.round(2)}"
+                  %td
+                    %b= "#{sale.total_items} Items"
+                  %td.text-end
+                    = link_to cancel_pos_path(id: sale.id), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm m-l-10" do
+                      %i.ti.ti-trash
+                    = link_to complete_pos_path(id: sale.id), method: :patch, class: "btn btn-success btn-sm" do
+                      %i.ti.ti-check
+                %tr
+                  %td{colspan: 6}
+                    %table.table
+                      - sale.product_sales.each do |product_sale|
+                        %tr
+                          %th= product_sale.product_product_size.product.name
+                          %th= product_sale.product_product_size.product_size.size
+                          %th= "#{product_sale.sugar_level} %"
+                          %th= "$ #{product_sale.price&.round(2)}"
+                %tr
+                  %td{colspan: 6}
+                    %b Note:
+                    = sale.note
+                %tr
+                  %td{colspan: 6}

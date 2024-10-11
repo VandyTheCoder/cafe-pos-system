@@ -1,5 +1,4 @@
 class BaseGrid
-
   include Datagrid
 
   self.default_column_options = {
@@ -41,5 +40,4 @@ class BaseGrid
       value ? "Yes" : "No"
     end
   end
-
 end

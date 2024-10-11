@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       if user_params[:password].present?
         @user.reset_password(user_params[:password], user_params[:password])
       end
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, notice: "User was successfully updated."
     else
       render :edit
     end

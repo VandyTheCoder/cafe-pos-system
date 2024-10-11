@@ -4,9 +4,9 @@ class Sale < ApplicationRecord
   belongs_to :user, optional: true
   has_many :product_sales, dependent: :destroy
 
-  STATUS = ["Pending", "In Progress", "Canceled", "Completed"]
+  STATUS = [ "Pending", "In Progress", "Canceled", "Completed" ]
 
-  scope :code_like, -> (value) { where('code iLIKE ?', "%#{value.squish}%") }
+  scope :code_like, ->(value) { where("code iLIKE ?", "%#{value.squish}%") }
 
   STATUS.each do |status_name|
     scope status_name.downcase, -> { where(status: status_name) }

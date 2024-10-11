@@ -38,6 +38,7 @@ group :development do
 end
 
 group :test do
+  gem "sqlite3",              "~> 2.1"
   gem "capybara"
   gem "selenium-webdriver"
 end

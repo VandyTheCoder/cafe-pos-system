@@ -10,7 +10,7 @@ class PosController < ApplicationController
     products = Product.where(status: "Active")
     products = products.name_like(search_value) if search_value.present?
     products = products.order(:name)
-  
+
     @products = products.includes(:category).map do |product|
       {
         id: product.id,
@@ -21,12 +21,12 @@ class PosController < ApplicationController
           {
             id: pps.id,
             size: pps.product_size.size,
-            price: pps.price,
+            price: pps.price
           }
         end
       }
     end
-  
+
     render json: @products
   rescue => e
     render json: { error: e.message }, status: :unprocessable_entity
@@ -74,7 +74,7 @@ class PosController < ApplicationController
 
   private
     def set_layout
-      'pos'
+      "pos"
     end
 
     def set_sale
@@ -83,27 +83,27 @@ class PosController < ApplicationController
 
     def build_sale
       Sale.new do |s|
-        s.customer_name = params['customer_name']
-        s.customer_phone_number = params['customer_phone_number']
-        s.note = params['note']
+        s.customer_name = params["customer_name"]
+        s.customer_phone_number = params["customer_phone_number"]
+        s.note = params["note"]
         s.user = current_user
         s.product_sales = build_product_sales
         s.amount = s.product_sales.sum(&:price)
         s.total_items = s.product_sales.size
       end
     end
-  
+
     def build_product_sales
       check_out_params.map do |_, value|
-        price = ProductProductSize.find(value['size_id']).price
+        price = ProductProductSize.find(value["size_id"]).price
         ProductSale.new do |ps|
-          ps.product_product_size_id = value['size_id']
+          ps.product_product_size_id = value["size_id"]
           ps.price = price
-          ps.sugar_level = value['sugar_level']
+          ps.sugar_level = value["sugar_level"]
         end
       end
     end
-  
+
     def check_out_params
       params.require(:check_out).permit!.to_h
     end

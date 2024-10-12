@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   cafe-pos-system:
-    image: nhean/cafe-pos-system:latest
+    image: vandysodanheang/cafe-pos-system:latest
     container_name: cafe-pos-system
     ports:
       - "3000:3000"

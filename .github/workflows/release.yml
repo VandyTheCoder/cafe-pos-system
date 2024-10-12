@@ -35,6 +35,7 @@ jobs:
           build-args: |
             APP_NAME=${{ vars.REPOSITORY_NAME }}
             APP_VERSION=${{ github.event.release.tag_name }}
+          secrets: |
             RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
           tags: |
             ${{ vars.DOCKER_HUB_USERNAME }}/${{ vars.REPOSITORY_NAME }}:nightly
@@ -50,6 +51,7 @@ jobs:
           build-args: |
             APP_NAME=${{ vars.REPOSITORY_NAME }}
             APP_VERSION=${{ github.event.release.tag_name }}
+          secrets: |
             RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}
           tags: |
             ${{ vars.DOCKER_HUB_USERNAME }}/${{ vars.REPOSITORY_NAME }}:latest

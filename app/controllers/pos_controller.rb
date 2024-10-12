@@ -92,7 +92,7 @@ class PosController < ApplicationController
         s.total_items = s.product_sales.size
       end
     end
-    
+
     def build_product_sales
       check_out_params[:products].values.map do |product|
         price = ProductProductSize.find(product[:size_id]).price
@@ -103,8 +103,8 @@ class PosController < ApplicationController
         end
       end
     end
-    
+
     def check_out_params
-      params.require(:check_out).permit(:customer_name, :customer_phone_number, :note, products: [:size_id, :sugar_level])
+      params.require(:check_out).permit(:customer_name, :customer_phone_number, :note, products: [ :size_id, :sugar_level ])
     end
 end

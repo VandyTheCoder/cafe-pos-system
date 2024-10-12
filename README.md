@@ -21,7 +21,7 @@ Cafe POS System is an open-source Point of Sale (POS) system for cafes, built wi
 
 - Ruby 3.3.5
 - Rails 7.2.1
-- PostgreSQL
+- PostgreSQL (Native installed on your PC, if you want to use PostgreSQL on docker, please update your database configuration in file `config/database.yml`)
 
 ### Installation
 
@@ -52,7 +52,7 @@ Cafe POS System is an open-source Point of Sale (POS) system for cafes, built wi
   rails server
   ```
 
-1. Open your browser and navigate to `http://localhost:3000`.
+Open your browser and navigate to `http://localhost:3000`.
 
 ### Contributing
 We welcome contributions to improve the Cafe POS System. To contribute, follow these steps:

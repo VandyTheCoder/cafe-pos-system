@@ -36,3 +36,6 @@
 
 # Ignore Mac and Linux file system files
 .DS_Store
+
+# Test DB File
+db/test.sqlite3

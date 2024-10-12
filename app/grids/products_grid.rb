@@ -1,5 +1,4 @@
 class ProductsGrid < BaseGrid
-
   scope do
     Product.order(:created_at)
   end

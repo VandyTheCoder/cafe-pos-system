@@ -59,6 +59,11 @@ class SalesController < ApplicationController
     end
 
     def grid_params
-      params.fetch(:sales_grid, {}).permit!
+      params.fetch(:sales_grid, {}).permit(
+        :status,
+        :code,
+        :created_at_gt,
+        :created_at_lt
+      )
     end
 end

@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       if user_params[:password].present?
         @user.reset_password(user_params[:password], user_params[:password])
       end
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, notice: "User was successfully updated."
     else
       render :edit
     end
@@ -62,20 +62,31 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(
-        :name,
-        :gender,
-        :picture,
-        :role,
-        :email,
-        :password,
-        :password_confirmation
-      )
-    end
+  # Only allow a list of trusted parameters through.
+  def user_params
+    permitted_attributes = [
+      :name,
+      :gender,
+      :picture,
+      :email,
+      :password,
+      :password_confirmation
+    ]
 
-    def grid_params
-      params.fetch(:users_grid, {}).permit!
-    end
+    # Only allow :role to be updated by admins
+    permitted_attributes << :role if current_user.admin?
+    params.require(:user).permit(permitted_attributes)
+  end
+
+  def grid_params
+    permitted_attributes = [
+      :name,
+      :email,
+      :gender
+    ]
+
+    # Only allow :role to be filtered by admins
+    permitted_attributes << :role if current_user.admin?
+    params.fetch(:users_grid, {}).permit(permitted_attributes)
+  end
 end

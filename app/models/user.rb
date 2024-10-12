@@ -7,11 +7,11 @@ class User < ApplicationRecord
 
   has_many :sales, dependent: :nullify
 
-  GENDER = ["Male", "Female"]
-  ROLES = ["Admin", "User"]
+  GENDER = [ "Male", "Female" ]
+  ROLES = [ "Admin", "User" ]
 
-  scope :name_like, -> (value) { where('name iLIKE ?', "%#{value.squish}%") }
-  scope :email_like, -> (value) { where('email iLIKE ?', "%#{value.squish}%") }
+  scope :name_like, ->(value) { where("name iLIKE ?", "%#{value.squish}%") }
+  scope :email_like, ->(value) { where("email iLIKE ?", "%#{value.squish}%") }
 
   ROLES.each do |role_name|
     scope role_name.downcase, -> { where(role: role_name) }
@@ -22,7 +22,7 @@ class User < ApplicationRecord
   end
 
   def picture_as_thumbnail
-    picture.variant(resize: '100x100').processed
+    picture.variant(resize: "100x100").processed
   end
 
   def is_super_admin?

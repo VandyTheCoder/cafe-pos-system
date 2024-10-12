@@ -43,6 +43,7 @@ CafePOS.PosIndex =
       customer_name = $("#customer-name-input").val()
       phone_number = $("#customer-phone-number-input").val()
       note = $("#customer-note-input").val()
+      check_out_data = []
       $("#order-summary-container tr.product-item").each (index, element) =>
         size_id = $(element).data("size-id")
         sugar_level = $(element).find("select.sugar-level-select").val()
@@ -51,10 +52,12 @@ CafePOS.PosIndex =
         url: '/pos/check_out'
         type: 'POST'
         data: { 
-          check_out: check_out_data,
-          customer_name: customer_name,
-          phone_number: phone_number,
-          note: note
+          check_out: {
+            customer_name: customer_name,
+            customer_phone_number: phone_number,
+            note: note,
+            products: check_out_data.map((item) => { size_id: item.size_id, sugar_level: item.sugar_level })
+          }
         }
         success: (data) =>
           $("#checkout-modal").modal("hide")

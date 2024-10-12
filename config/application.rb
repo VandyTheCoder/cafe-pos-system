@@ -13,11 +13,11 @@ module CafePosSystem
     end
 
     config.autoload_lib(ignore: %w[assets tasks])
-    config.time_zone = 'Asia/Phnom_Penh'
+    config.time_zone = "Asia/Phnom_Penh"
 
     config.assets.enabled = true
-    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-    config.assets.precompile += %w( .svg .eot .woff .ttf)
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.precompile += %w[ .svg .eot .woff .ttf]
 
     config.active_record.default_timezone = :local
     config.session_store :cookie_store, key: "health_management_session_#{Rails.env}"

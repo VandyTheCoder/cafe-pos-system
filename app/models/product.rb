@@ -6,14 +6,14 @@ class Product < ApplicationRecord
   has_one_attached :picture
 
   validates :name, presence: true, uniqueness: true
-  validates :status, presence: true, inclusion: { in: ["Active", "Inactive", "Out of Stock"] }
+  validates :status, presence: true, inclusion: { in: [ "Active", "Inactive", "Out of Stock" ] }
   validates :category, presence: true
 
-  STATUS = ["Active", "Inactive", "Out of Stock"]
+  STATUS = [ "Active", "Inactive", "Out of Stock" ]
 
-  scope :name_like, -> (value) { where('name iLIKE ?', "%#{value.squish}%") }
+  scope :name_like, ->(value) { where("name iLIKE ?", "%#{value.squish}%") }
 
   def picture_as_thumbnail
-    picture.variant(resize: '300x300').processed
+    picture.variant(resize: "300x300").processed
   end
 end

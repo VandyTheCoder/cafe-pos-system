@@ -6,8 +6,8 @@ on:
 
 jobs:
   build:
-    name: release-latest-image
-    runs-on: self-hosted
+    name: release-cafe-pos-system
+    runs-on: ubuntu-latest
     steps:
       - name: "GIT: Checkout Action Version"
         uses: actions/checkout@v3

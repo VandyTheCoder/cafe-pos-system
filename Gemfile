@@ -14,7 +14,6 @@ gem "bootstrap",              "~> 5.3", ">= 5.3.3"
 gem "devise",                 "~> 4.9", ">= 4.9.4"
 gem "simple_form",            "~> 5.3", ">= 5.3.1"
 gem "sprockets-rails"
-gem "importmap-rails"
 gem "turbolinks",             "~> 5.2", ">= 5.2.1"
 gem "stimulus-rails"
 gem "tzinfo-data",                            platforms: %i[ windows jruby ]

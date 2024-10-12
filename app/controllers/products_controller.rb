@@ -71,6 +71,10 @@ class ProductsController < ApplicationController
     end
 
     def grid_params
-      params.fetch(:products_grid, {}).permit!
+      params.fetch(:products_grid, {}).permit(
+        :name,
+        :status,
+        :category_id
+      )
     end
 end

@@ -1,4 +1,5 @@
 class UsersGrid < BaseGrid
+
   scope do
     User
   end

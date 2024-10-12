@@ -83,28 +83,28 @@ class PosController < ApplicationController
 
     def build_sale
       Sale.new do |s|
-        s.customer_name = params["customer_name"]
-        s.customer_phone_number = params["customer_phone_number"]
-        s.note = params["note"]
+        s.customer_name = check_out_params[:customer_name]
+        s.customer_phone_number = check_out_params[:customer_phone_number]
+        s.note = check_out_params[:note]
         s.user = current_user
         s.product_sales = build_product_sales
         s.amount = s.product_sales.sum(&:price)
         s.total_items = s.product_sales.size
       end
     end
-
+    
     def build_product_sales
-      check_out_params.map do |_, value|
-        price = ProductProductSize.find(value["size_id"]).price
+      check_out_params[:products].values.map do |product|
+        price = ProductProductSize.find(product[:size_id]).price
         ProductSale.new do |ps|
-          ps.product_product_size_id = value["size_id"]
+          ps.product_product_size_id = product[:size_id]
           ps.price = price
-          ps.sugar_level = value["sugar_level"]
+          ps.sugar_level = product[:sugar_level]
         end
       end
     end
-
+    
     def check_out_params
-      params.require(:check_out).permit!.to_h
+      params.require(:check_out).permit(:customer_name, :customer_phone_number, :note, products: [:size_id, :sugar_level])
     end
 end

@@ -1,6 +1,5 @@
 # syntax = docker/dockerfile:1
 
-ARG RAILS_MASTER_KEY
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
 # docker build -t my-app .
 # docker run -d -p 80:80 -p 443:443 --name my-app -e RAILS_MASTER_KEY=<value from config/master.key> my-app
@@ -44,9 +43,8 @@ COPY . .
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
-# Use the build argument in the environment for the precompile step
-RUN --mount=type=secret,id=rails_master_key \
-    RAILS_MASTER_KEY=$(cat /run/secrets/rails_master_key) ./bin/rails assets:precompile
+# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base

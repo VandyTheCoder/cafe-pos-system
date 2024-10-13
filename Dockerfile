@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1
 
-# This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
+# This Dockerfile is designed for production, not development.
 # docker build -t my-app .
 # docker run -d -p 80:80 -p 443:443 --name my-app -e RAILS_MASTER_KEY=<value from config/master.key> my-app
 
@@ -16,6 +16,9 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libjemalloc2 libvips libpq-dev postgresql-client nodejs imagemagick && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# Install Bundler version specified in Gemfile.lock to avoid version mismatch
+RUN gem install bundler -v 2.5.20
+
 # Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
@@ -30,9 +33,9 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Install application gems
+# Install application gems using the correct Bundler version
 COPY Gemfile Gemfile.lock ./
-RUN bundle install && \
+RUN bundle _2.5.20_ install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 

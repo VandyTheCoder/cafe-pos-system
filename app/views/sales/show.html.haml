@@ -14,7 +14,7 @@
           = render_sale_status(@sale, "float: right;")
         .table-responsive
           %table.table.table-bordered.custom-table
-            %tbody
+            %tbody.body-add-p-10
               %tr
                 %td{style: "width: 30%"} Code
                 %th= @sale.code
@@ -52,7 +52,7 @@
                 %th.text-center Size
                 %th.text-center Sugar
                 %th.text-center $ Price
-            %tbody
+            %tbody.body-add-p-10
               - @sale.product_sales.each do |product_sale|
                 - product = product_sale.product_product_size.product
                 %tr

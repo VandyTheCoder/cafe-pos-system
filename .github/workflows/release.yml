@@ -22,7 +22,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: "DOCKER: Setting Up QEMU"
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
 
       - name: "DOCKER: Build Nightly Tag and Push Image to Docker HUB"
         if: "github.event.release.prerelease"

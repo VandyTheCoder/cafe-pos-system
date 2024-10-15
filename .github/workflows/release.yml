@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "GIT: Checkout Action Version"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: "DOCKER: Authentication with Docker HUB"
         uses: docker/login-action@v3

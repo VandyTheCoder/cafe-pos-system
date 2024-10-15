@@ -3,11 +3,11 @@
 #= require turbolinks
 #= require cocoon
 
-#= require theme/bootstrap.bundle.min
-#= require theme/sidebarmenu
-#= require theme/app.min
-#= require theme/apexcharts
-#= require theme/simplebar
+#= require theme/bootstrap.bundle.min.js
+#= require theme/sidebarmenu.js
+#= require theme/app.min.js
+#= require theme/apexcharts.js
+#= require theme/simplebar.js
 
 #= require core/namespace
 #= require core/util

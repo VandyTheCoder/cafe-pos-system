@@ -62,15 +62,8 @@ td.actions {
   vertical-align: middle;
 }
 
-.order{
-  float: left;
-  margin-right: 5px;
-  display: flex;
-  margin-top: -2px;
-
-  a{
-    margin-right: -1px;
-  }
+.order > a{
+  margin-right: -5px;
 }
 
 .filter-actions{
@@ -116,22 +109,6 @@ td.description{
   border-radius: 10px;
 }
 
-.custom-table{
-  thead {
-    position: sticky;
-    top: 0; z-index: 2;
-    background-color: #015AAA;
-    color: #FFFFFF;
-    border-radius: 15px;
-
-    tr{
-      th {
-        background-color: #015AAA;
-      }
-    }
-  }
-}
-
 .table-responsive-custom {
   overflow-y: auto;
   height: 500px;
@@ -167,4 +144,36 @@ td.logo {
 
 .grid-filter-label {
   font-weight: 600;
+}
+
+.table:not(caption) * * {
+  padding: 5px 5px;
+}
+
+.order {
+  float: left;
+  display: flex;
+  padding: 0px !important;
+  margin-top: -6px !important;
+  margin-right: 7px;
+}
+
+.add-p-15 {
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+
+.add-p-10 {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.table-bordered:not(caption) * * {
+  border-width: 1px !important;
+}
+
+.body-add-p-10 {
+  th, td {
+    padding: 10px 7px !important;
+  }
 }

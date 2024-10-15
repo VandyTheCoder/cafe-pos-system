@@ -13,7 +13,7 @@
           %i.ti.ti-ruler-measure
           All Product Sizes
         .table-responsive
-          %table.table.text-nowrap.mb-0.align-middle
+          %table.table.none-datagrid-table.text-nowrap.mb-0.align-middle
             %thead.text-dark.fs-4
               %tr
                 %th
@@ -31,7 +31,7 @@
             %tbody
               - @product_sizes.each do |product_size|
                 %tr
-                  %td.border-bottom-0
+                  %td.border-bottom-0.add-p-15
                     %h6.fw-semibold.mb-1= product_size.name
                   %td.border-bottom-0
                     %h6.fw-semibold.mb-1= product_size.size

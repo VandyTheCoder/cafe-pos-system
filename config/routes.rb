@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   resources :users
   resources :products
-  resources :product_sizes
   resources :categories
   resources :sales
 

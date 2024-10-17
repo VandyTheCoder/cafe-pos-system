@@ -6,23 +6,28 @@
   .form-inputs
     .row
       .col-sm-6
-        = f.input :name
-        = f.input :picture
-        = f.input :status, as: :select, collection: Product::STATUS
-        = f.association :category
-        = f.input :description
+        .card.w-100
+          .card-body.p-4
+            %h5.card-title.fw-semibold.mb-4
+              %i.ti.ti-package
+              Product Details
+            = f.input :name
+            = f.input :picture
+            = f.input :status, as: :select, collection: Product::STATUS
+            = f.association :category
+            = f.input :description
       .col-sm-6
         .card.w-100
           .card-body.p-4
             %h5.card-title.fw-semibold.mb-4
               %i.ti.ti-package
               Product Sizes
-            #product_product_sizes
-              = f.simple_fields_for :product_product_sizes do |product_product_size|
-                = render 'product_product_size_fields', f: product_product_size
+            #product_sizes
+              = f.simple_fields_for :product_sizes do |product_size|
+                = render 'product_size_fields', f: product_size
               .links
                 %hr/
-                = link_to_add_association 'Add Size', f, :product_product_sizes, class: "btn btn-outline-primary btn-sm"
+                = link_to_add_association 'Add Size', f, :product_sizes, class: "btn btn-outline-primary btn-sm"
 
   .form-actions
     = f.button :submit, class: "btn btn-primary"

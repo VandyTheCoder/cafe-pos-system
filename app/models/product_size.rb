@@ -1,8 +1,7 @@
 class ProductSize < ApplicationRecord
-  has_many :product_product_sizes, dependent: :destroy
+  belongs_to :product
   has_many :product_sales, dependent: :nullify
 
-  validates :name, presence: true, uniqueness: true
-  validates :size, presence: true
-  validates :capacity, presence: true
+  validates :price, presence: true, numericality: { greater_than: 0 }
+  validates :size, presence: true, uniqueness: { scope: :product_id, message: "should be unique per product" }
 end

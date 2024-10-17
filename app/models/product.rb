@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :category
-  has_many :product_product_sizes, inverse_of: :product, dependent: :destroy
-  accepts_nested_attributes_for :product_product_sizes, reject_if: :all_blank, allow_destroy: true
+  has_many :product_sizes, inverse_of: :product, dependent: :destroy
+  accepts_nested_attributes_for :product_sizes, reject_if: :all_blank, allow_destroy: true
 
   has_one_attached :picture
 

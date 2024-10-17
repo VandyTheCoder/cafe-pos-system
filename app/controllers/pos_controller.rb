@@ -17,10 +17,10 @@ class PosController < ApplicationController
         name: product.name.truncate(20),
         picture: url_for(product.picture_as_thumbnail),
         category: product.category.name,
-        sizes: product.product_product_sizes&.map do |pps|
+        sizes: product.product_sizes&.map do |pps|
           {
             id: pps.id,
-            size: pps.product_size.size,
+            size: pps.size,
             price: pps.price
           }
         end
@@ -95,9 +95,9 @@ class PosController < ApplicationController
 
     def build_product_sales
       check_out_params[:products].values.map do |product|
-        price = ProductProductSize.find(product[:size_id]).price
+        price = ProductSize.find(product[:size_id]).price
         ProductSale.new do |ps|
-          ps.product_product_size_id = product[:size_id]
+          ps.product_size_id = product[:size_id]
           ps.price = price
           ps.sugar_level = product[:sugar_level]
         end

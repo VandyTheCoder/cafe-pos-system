@@ -61,9 +61,9 @@ class ProductsController < ApplicationController
         :picture,
         :category_id,
         :description,
-        product_product_sizes_attributes: [
+        product_sizes_attributes: [
           :id,
-          :product_size_id,
+          :size,
           :price,
           :_destroy
         ]

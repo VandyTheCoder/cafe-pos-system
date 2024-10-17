@@ -84,7 +84,7 @@ CafePOS.PosIndex =
   appendProducts: (product) ->
     size_html = "<br>"
     for size in product.sizes
-      size_html += "<button id='#{product.id}-#{size.id}-#{Date.now()}' data-product='#{JSON.stringify(product)}' data-size='#{JSON.stringify(size)}' class='btn btn-outline-primary btn-sm btn-add-product m-r-5' type='button'>#{size.size}</button>"
+      size_html += "<button id='#{product.id}-#{size.id}-#{Date.now()}' data-product='#{JSON.stringify(product)}' data-size='#{JSON.stringify(size)}' class='btn btn-outline-primary btn-sm btn-add-product m-r-5' type='button'>#{size.size.charAt(0).toUpperCase()}</button>"
 
     product_html = "
       <div class='col-sm-4 col-md-4 col-lg-3'>

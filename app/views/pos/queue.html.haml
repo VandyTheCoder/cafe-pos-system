@@ -26,44 +26,50 @@
           Pending Orders
           %span.badge.bg-secondary.rounded-3.fw-semibold.float-rigt
             = "#{@pending_sales.size} Orders"
-        .table-responsive
-          %table.table.table-striped
-            %thead
-              %tr
-                %th Code
-                %th Name
-                %th Amount
-                %th Items
-                %th.text-end Action
-            %tbody
-              - @pending_sales.each do |sale|
+        - @pending_sales.each do |sale|
+          .row
+            .col-4
+              %p
+                Code:
+                %b= sale.code.truncate(11)
+            .col-2
+              %p
+                Name:
+                %b= sale.customer_name
+            .col-2
+              %p
+                Amount:
+                %b= "$ #{sale.amount&.round(2)}"
+            .col-2
+              %p
+                Items:
+                %b= "#{sale.total_items} Items"
+            .col-2.text-end
+              = link_to cancel_pos_path(id: sale.id), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" do
+                %i.ti.ti-trash
+              = link_to in_progress_pos_path(id: sale.id), method: :patch, class: "btn btn-primary btn-sm m-l-10" do
+                %i.ti.ti-arrow-right
+          .row
+            .col-12
+              %p
+                %b Note:
+                = sale.note
+          .table-responsive
+            %table.table.custom-table
+              %thead
                 %tr
-                  %td= sale.code.truncate(15)
-                  %td= sale.customer_name
-                  %td
-                    %b= "$ #{sale.amount&.round(2)}"
-                  %td
-                    %b= "#{sale.total_items} Items"
-                  %td.text-end
-                    = link_to cancel_pos_path(id: sale.id), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm m-l-10" do
-                      %i.ti.ti-trash
-                    = link_to in_progress_pos_path(id: sale.id), method: :patch, class: "btn btn-primary btn-sm" do
-                      %i.ti.ti-arrow-right
-                %tr
-                  %td{colspan: 6}
-                    %table.table
-                      - sale.product_sales.each do |product_sale|
-                        %tr
-                          %th= product_sale.product_product_size.product.name
-                          %th= product_sale.product_product_size.product_size.size
-                          %th= "#{product_sale.sugar_level} %"
-                          %th= "$ #{product_sale.price&.round(2)}"
-                %tr
-                  %td{colspan: 6}
-                    %b Note:
-                    = sale.note
-                %tr
-                  %td{colspan: 6}
+                  %th Item Name
+                  %th Size                
+                  %th Sugar Level
+                  %th $ Price
+              %tbody
+                - sale.product_sales.each do |product_sale|
+                  %tr
+                    %td= product_sale.product_size.product.name
+                    %td= product_sale.product_size.size
+                    %td= "#{product_sale.sugar_level} %"
+                    %td= "$ #{product_sale.price&.round(2)}"
+          %hr/
                     
   .col-sm-12.col-lg-6.d-flex.align-items-stretch
     .card.w-100
@@ -73,41 +79,47 @@
           In Progress Orders
           %span.badge.bg-warning.rounded-3.fw-semibold.float-rigt
             = "#{@in_progress_sales.size} Orders"
-        .table-responsive
-          %table.table.table-striped
-            %thead
-              %tr
-                %th Code
-                %th Name                
-                %th Amount
-                %th Items
-                %th.text-end Action
-            %tbody
-              - @in_progress_sales.each do |sale|
+        - @in_progress_sales.each do |sale|
+          .row
+            .col-4
+              %p
+                Code:
+                %b= sale.code.truncate(11)
+            .col-2
+              %p
+                Name:
+                %b= sale.customer_name
+            .col-2
+              %p
+                Amount:
+                %b= "$ #{sale.amount&.round(2)}"
+            .col-2
+              %p
+                Items:
+                %b= "#{sale.total_items} Items"
+            .col-2.text-end
+              = link_to cancel_pos_path(id: sale.id), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" do
+                %i.ti.ti-trash
+              = link_to complete_pos_path(id: sale.id), method: :patch, class: "btn btn-success btn-sm m-l-10" do
+                %i.ti.ti-check
+          .row
+            .col-12
+              %p
+                %b Note:
+                = sale.note
+          .table-responsive
+            %table.table.custom-table
+              %thead
                 %tr
-                  %td= sale.code.truncate(15)
-                  %td= sale.customer_name
-                  %td
-                    %b= "$ #{sale.amount&.round(2)}"
-                  %td
-                    %b= "#{sale.total_items} Items"
-                  %td.text-end
-                    = link_to cancel_pos_path(id: sale.id), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm m-l-10" do
-                      %i.ti.ti-trash
-                    = link_to complete_pos_path(id: sale.id), method: :patch, class: "btn btn-success btn-sm" do
-                      %i.ti.ti-check
-                %tr
-                  %td{colspan: 6}
-                    %table.table
-                      - sale.product_sales.each do |product_sale|
-                        %tr
-                          %th= product_sale.product_product_size.product.name
-                          %th= product_sale.product_product_size.product_size.size
-                          %th= "#{product_sale.sugar_level} %"
-                          %th= "$ #{product_sale.price&.round(2)}"
-                %tr
-                  %td{colspan: 6}
-                    %b Note:
-                    = sale.note
-                %tr
-                  %td{colspan: 6}
+                  %th Item Name
+                  %th Size                
+                  %th Sugar Level
+                  %th $ Price
+              %tbody
+                - sale.product_sales.each do |product_sale|
+                  %tr
+                    %td= product_sale.product_size.product.name
+                    %td= product_sale.product_size.size
+                    %td= "#{product_sale.sugar_level} %"
+                    %td= "$ #{product_sale.price&.round(2)}"
+          %hr/

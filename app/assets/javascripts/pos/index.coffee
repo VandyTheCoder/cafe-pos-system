@@ -61,11 +61,10 @@ CafePOS.PosIndex =
         }
         success: (data) =>
           $("#checkout-modal").modal("hide")
+          $("#btn-print-receipt").attr("href", "#{data.pdf_url}")
           $("#checkout-success-modal").modal("show")
-          setTimeout(() =>
-            $("#checkout-success-modal").modal("hide")
-            window.location.href = "/pos"
-          , 1000)
+          $("#order-summary-container").find("tr.product-item").remove()
+          boss.calculateTotal()
         error: (error) =>
           $("#checkout-modal").modal("hide")
           $("#checkout-error-modal").modal("show")

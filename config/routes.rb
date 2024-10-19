@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "homepage#index"
+  get "chart_data" => "homepage#chart_data", as: :chart_data
 
   scope "auth" do
     devise_for :users
@@ -8,8 +9,8 @@ Rails.application.routes.draw do
   resources :pos, only: [ :index ] do
     collection do
       get :search
-      post :check_out
       get :queue
+      post :check_out
       patch :in_progress
       patch :cancel
       patch :complete

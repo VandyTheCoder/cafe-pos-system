@@ -1,40 +1,36 @@
 CafePOS.HomepageIndex =
   init: ->
-    @_initDashboardChart()
+    @_fetchDailySaleData()
+    @_handleDialySaleFilter()
   
-  _initDashboardChart: ->
-    `var chart`
-    `var chart`
-    # =====================================
-    # Profit
-    # =====================================
+  _fetchDailySaleData: ->
+    boss = @
+    filter_month = $('#filter-data').data 'filtered-month'
+    filter_year = $('#filter-data').data 'filtered-year'
+    ajax = $.ajax
+      url: '/chart_data?month=' + filter_month + '&year=' + filter_year
+      type: 'GET'
+      success: (data) ->
+        boss.initDashboardChart(data)
+      error: (error) ->
+        console.log(error)
+  
+  _handleDialySaleFilter: ->
+    boss = @
+    root_url = $('#filter-data').data 'url'
+    $("#sales-filter").change (e) ->
+      value = $(this).val().split('-')
+      month = value[0]
+      year = value[1]
+      window.location.href = "#{root_url}?month=#{month}&year=#{year}"
+  
+  initDashboardChart: (data) ->
+    boss = @
     chart = 
       series: [
         {
-          name: 'Earnings this month:'
-          data: [
-            355
-            390
-            300
-            350
-            390
-            180
-            355
-            390
-          ]
-        }
-        {
-          name: 'Expense this month:'
-          data: [
-            280
-            250
-            325
-            215
-            250
-            310
-            280
-            250
-          ]
+          name: 'Earnings this month:',
+          data: data.amounts
         }
       ]
       chart:
@@ -63,22 +59,13 @@ CafePOS.HomepageIndex =
         strokeDashArray: 3
         xaxis: lines: show: false
       xaxis:
-        type: 'category'
-        categories: [
-          '16/08'
-          '17/08'
-          '18/08'
-          '19/08'
-          '20/08'
-          '21/08'
-          '22/08'
-          '23/08'
-        ]
+        type: 'category',
+        categories: data.dates,
         labels: style: cssClass: 'grey--text lighten-2--text fill-color'
       yaxis:
         show: true
         min: 0
-        max: 400
+        max: data.highest_amount + 100
         tickAmount: 4
         labels: style: cssClass: 'grey--text lighten-2--text fill-color'
       stroke:
@@ -98,16 +85,8 @@ CafePOS.HomepageIndex =
     # =====================================
     breakup = 
       color: '#adb5bd'
-      series: [
-        38
-        40
-        25
-      ]
-      labels: [
-        '2022'
-        '2021'
-        '2020'
-      ]
+      series: data.yearly_sales
+      labels: data.yearly_labels
       chart:
         width: 180
         type: 'donut'
@@ -149,15 +128,7 @@ CafePOS.HomepageIndex =
       series: [ {
         name: 'Earnings'
         color: '#49BEFF'
-        data: [
-          25
-          66
-          20
-          40
-          12
-          58
-          20
-        ]
+        data: data.monthly_sales
       } ]
       stroke:
         curve: 'smooth'

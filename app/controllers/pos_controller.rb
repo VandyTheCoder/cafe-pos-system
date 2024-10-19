@@ -35,7 +35,7 @@ class PosController < ApplicationController
   def check_out
     sale = build_sale
     if sale.save
-      render json: { message: "Check out success" }
+      render json: { id: sale.id, message: "Check out success", pdf_url: sale_url(sale, format: :pdf) }
     else
       render json: { error: sale.errors.full_messages.join(", ") }, status: :unprocessable_entity
     end

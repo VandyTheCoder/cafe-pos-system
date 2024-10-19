@@ -2,6 +2,10 @@
   %i.ti.ti-arrow-left
   Back to Sale Records
 
+= link_to sale_path(@sale, format: :pdf), class: "btn btn-dark m-l-10", target: "_blank" do
+  %i.ti.ti-printer
+  Print Invoice
+
 %br/
 %br/
 .row
@@ -54,11 +58,11 @@
                 %th.text-center $ Price
             %tbody.body-add-p-10
               - @sale.product_sales.each do |product_sale|
-                - product = product_sale.product_product_size.product
+                - product = product_sale.product_size.product
                 %tr
                   %td= image_tag product.picture_as_thumbnail, class: "img-fluid rounded", style: "max-width: 100px" if product.picture.attached?
                   %td= product.name
-                  %td.text-center= product_sale.product_product_size.product_size.size
+                  %td.text-center= product_sale.product_size.size
                   %td.text-center= "#{product_sale.sugar_level} %"
                   %td.text-center= "$ #{product_sale.price.round(2)}"
               %tr

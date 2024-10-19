@@ -67,9 +67,11 @@
       .modal-body
         %p Your order has been successfully checked out.
         %p Thank you for using our system.
-        %p Page will be redirected in 3 seconds.
       .modal-footer
-        %button.btn.btn-success{"data-bs-dismiss" => "modal", type: "button"} OK
+        %a#btn-print-receipt.btn.btn-success{href: "#", target: "_blank"}
+          %i.ti.ti-printer
+          Print Receipt
+        %button.btn.btn-light{"data-bs-dismiss" => "modal", type: "button"} Close
 
 #checkout-error-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "checkout-error-modal-label", tabindex: "-1"}
   .modal-dialog

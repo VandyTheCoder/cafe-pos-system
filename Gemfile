@@ -24,10 +24,12 @@ gem "bootstrap5-kaminari-views"
 gem "image_processing",       "~> 1.13"
 gem "cocoon",                 "~> 1.2", ">= 1.2.15"
 gem "ostruct",                "~> 0.6.0"
+gem "prawn",                  "~> 2.5"
+gem "prawn-table",            "~> 0.2.2"
 
 group :development, :test do
   gem "debug",                                platforms: %i[ mri windows ], require: "debug/prelude"
-  gem "brakeman",                             require: false
+  gem "brakeman",             "~> 6.2.2",     require: false
   gem "rubocop-rails-omakase",                require: false
   gem "pry-rails",            "~> 0.3.11"
 end

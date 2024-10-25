@@ -11,9 +11,8 @@
     = yield :head
 
     %link{:href => "/manifest.json", :rel => "manifest"}/
-    %link{:href => "/icon.png", :rel => "icon", :type => "image/png"}/
-    %link{:href => "/icon.svg", :rel => "icon", :type => "image/svg+xml"}/
-    %link{:href => "/icon.png", :rel => "apple-touch-icon"}/
+    %link{:href => asset_path("favicon.png"), :rel => "icon", :type => "image/png"}/
+    %link{:href => asset_path("favicon.png"), :rel => "apple-touch-icon"}/
 
     = stylesheet_link_tag    'devise', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'devise', 'data-turbolinks-track': 'reload'

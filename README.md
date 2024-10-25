@@ -1,3 +1,4 @@
+![Cafe POS System Logo](app/assets/images/logo.png)
 # Cafe POS System
 
 Cafe POS System is an open-source Point of Sale (POS) system for cafes, built with Ruby on Rails. This system allows cafe owners to manage orders, products, and customers efficiently.

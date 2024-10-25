@@ -4,7 +4,7 @@
   %div
     .brand-logo.d-flex.align-items-center.justify-content-between
       = link_to root_url, class: "text-nowrap logo-img" do
-        %img{alt: "", src: "/images/logos/dark-logo.svg", width: "180"}/
+        = image_tag "logo.png", width: "180"
       #sidebarCollapse.close-btn.d-xl-none.d-block.sidebartoggler.cursor-pointer
         %i.ti.ti-x.fs-8
     / Sidebar navigation

@@ -62,120 +62,36 @@
         #chart
 
 .row
-  .col-lg-4.d-flex.align-items-stretch
+  .col-lg-12.d-flex.align-items-stretch
     .card.w-100
       .card-body.p-4
-        .mb-4
-          %h5.card-title.fw-semibold Recent Transactions
-        %ul.timeline-widget.mb-0.position-relative.mb-n5
-          %li.timeline-item.d-flex.position-relative.overflow-hidden
-            .timeline-time.text-dark.flex-shrink-0.text-end 09:30
-            .timeline-badge-wrap.d-flex.flex-column.align-items-center
-              %span.timeline-badge.border-2.border.border-primary.flex-shrink-0.my-8
-              %span.timeline-badge-border.d-block.flex-shrink-0
-            .timeline-desc.fs-3.text-dark.mt-n1 Payment received from John Doe of $385.90
-          %li.timeline-item.d-flex.position-relative.overflow-hidden
-            .timeline-time.text-dark.flex-shrink-0.text-end 10:00 am
-            .timeline-badge-wrap.d-flex.flex-column.align-items-center
-              %span.timeline-badge.border-2.border.border-info.flex-shrink-0.my-8
-              %span.timeline-badge-border.d-block.flex-shrink-0
-            .timeline-desc.fs-3.text-dark.mt-n1.fw-semibold
-              New sale recorded
-              %a.text-primary.d-block.fw-normal{href: "javascript:void(0)"} #ML-3467
-          %li.timeline-item.d-flex.position-relative.overflow-hidden
-            .timeline-time.text-dark.flex-shrink-0.text-end 12:00 am
-            .timeline-badge-wrap.d-flex.flex-column.align-items-center
-              %span.timeline-badge.border-2.border.border-success.flex-shrink-0.my-8
-              %span.timeline-badge-border.d-block.flex-shrink-0
-            .timeline-desc.fs-3.text-dark.mt-n1 Payment was made of $64.95 to Michael
-          %li.timeline-item.d-flex.position-relative.overflow-hidden
-            .timeline-time.text-dark.flex-shrink-0.text-end 09:30 am
-            .timeline-badge-wrap.d-flex.flex-column.align-items-center
-              %span.timeline-badge.border-2.border.border-warning.flex-shrink-0.my-8
-              %span.timeline-badge-border.d-block.flex-shrink-0
-            .timeline-desc.fs-3.text-dark.mt-n1.fw-semibold
-              New sale recorded
-              %a.text-primary.d-block.fw-normal{href: "javascript:void(0)"} #ML-3467
-          %li.timeline-item.d-flex.position-relative.overflow-hidden
-            .timeline-time.text-dark.flex-shrink-0.text-end 09:30 am
-            .timeline-badge-wrap.d-flex.flex-column.align-items-center
-              %span.timeline-badge.border-2.border.border-danger.flex-shrink-0.my-8
-              %span.timeline-badge-border.d-block.flex-shrink-0
-            .timeline-desc.fs-3.text-dark.mt-n1.fw-semibold
-              New arrival recorded
-          %li.timeline-item.d-flex.position-relative.overflow-hidden
-            .timeline-time.text-dark.flex-shrink-0.text-end 12:00 am
-            .timeline-badge-wrap.d-flex.flex-column.align-items-center
-              %span.timeline-badge.border-2.border.border-success.flex-shrink-0.my-8
-            .timeline-desc.fs-3.text-dark.mt-n1 Payment Done
-  .col-lg-8.d-flex.align-items-stretch
-    .card.w-100
-      .card-body.p-4
-        %h5.card-title.fw-semibold.mb-4 Recent Transactions
+        %h5.card-title.fw-semibold.mb-4
+          %i.ti.ti-hourglass-high
+          Recent Pending Sales
         .table-responsive
           %table.table.text-nowrap.mb-0.align-middle
             %thead.text-dark.fs-4
               %tr
                 %th.border-bottom-0
-                  %h6.fw-semibold.mb-0 Id
+                  %h6.fw-semibold.mb-0 Code
                 %th.border-bottom-0
-                  %h6.fw-semibold.mb-0 Assigned
+                  %h6.fw-semibold.mb-0 Customer
+                %th.border-bottom-0.text-center
+                  %h6.fw-semibold.mb-0 $ Amount
+                %th.border-bottom-0.text-center
+                  %h6.fw-semibold.mb-0 Items
                 %th.border-bottom-0
-                  %h6.fw-semibold.mb-0 Name
-                %th.border-bottom-0
-                  %h6.fw-semibold.mb-0 Priority
-                %th.border-bottom-0
-                  %h6.fw-semibold.mb-0 Budget
+                  %h6.fw-semibold.mb-0 Date
             %tbody
-              %tr
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-0 1
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-1 Sunil Joshi
-                  %span.fw-normal Web Designer
-                %td.border-bottom-0
-                  %p.mb-0.fw-normal Elite Admin
-                %td.border-bottom-0
-                  .d-flex.align-items-center.gap-2
-                    %span.badge.bg-primary.rounded-3.fw-semibold Low
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-0.fs-4 $3.9
-              %tr
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-0 2
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-1 Andrew McDownland
-                  %span.fw-normal Project Manager
-                %td.border-bottom-0
-                  %p.mb-0.fw-normal Real Homes WP Theme
-                %td.border-bottom-0
-                  .d-flex.align-items-center.gap-2
-                    %span.badge.bg-secondary.rounded-3.fw-semibold Medium
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-0.fs-4 $24.5k
-              %tr
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-0 3
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-1 Christopher Jamil
-                  %span.fw-normal Project Manager
-                %td.border-bottom-0
-                  %p.mb-0.fw-normal MedicalPro WP Theme
-                %td.border-bottom-0
-                  .d-flex.align-items-center.gap-2
-                    %span.badge.bg-danger.rounded-3.fw-semibold High
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-0.fs-4 $12.8k
-              %tr
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-0 4
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-1 Nirav Joshi
-                  %span.fw-normal Frontend Engineer
-                %td.border-bottom-0
-                  %p.mb-0.fw-normal Hosting Press HTML
-                %td.border-bottom-0
-                  .d-flex.align-items-center.gap-2
-                    %span.badge.bg-success.rounded-3.fw-semibold Critical
-                %td.border-bottom-0
-                  %h6.fw-semibold.mb-0.fs-4 $2.4k
+              - @recent_pending_sales.each do |sale|
+                %tr
+                  %td.border-bottom-0.add-p-15
+                    %h6.fw-semibold.mb-0= sale.code
+                  %td.border-bottom-0
+                    %h6.fw-semibold.mb-0= sale.customer_name
+                  %td.border-bottom-0.text-center
+                    %h6.fw-semibold.mb-0= "$ #{sale.amount}"
+                  %td.border-bottom-0.text-center
+                    %h6.fw-semibold.mb-0= "#{sale.total_items} Item(s)"
+                  %td.border-bottom-0
+                    %h6.fw-semibold.mb-0= sale.created_at.strftime("%d %b %Y || %I:%M %p")

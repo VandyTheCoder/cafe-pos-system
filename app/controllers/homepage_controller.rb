@@ -6,6 +6,7 @@ class HomepageController < ApplicationController
     @filtered_year = params[:year] ? params[:year] : Date.today.year.to_s
     get_this_month_and_previous_month_sales
     get_this_year_and_previous_year_sales
+    @recent_pending_sales = Sale.where(status: "Pending").order(created_at: :desc).limit(5)
   end
 
   def chart_data

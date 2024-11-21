@@ -18,7 +18,7 @@ gem "turbolinks",             "~> 5.2", ">= 5.2.1"
 gem "stimulus-rails"
 gem "tzinfo-data",                            platforms: %i[ windows jruby ]
 gem "bootsnap",                               require: false
-gem "datagrid",               "~> 1.8", ">= 1.8.2"
+gem "datagrid",               "~> 2.0"
 gem "kaminari"
 gem "bootstrap5-kaminari-views"
 gem "image_processing",       "~> 1.13"

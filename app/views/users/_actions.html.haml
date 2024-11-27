@@ -3,5 +3,4 @@
 = link_to edit_user_path(user), class: "btn btn-outline-primary btn-sm" do
   %i.ti.ti-pencil
 - if !user.is_super_admin?
-  = link_to user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" do
-    %i.ti.ti-trash
+  = render "partials/delete_modal", object_id: user.id, path: user_path(user)

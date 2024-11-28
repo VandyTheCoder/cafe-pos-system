@@ -1,0 +1,18 @@
+.modal-content {
+  background-color: #FFFFFF !important;
+}
+
+.btn-close {
+  margin-right: 0px !important;
+}
+
+.modal-footer {
+  a.btn-danger {
+    background-color: var(--bs-btn-hover-bg) !important;
+    border-color: var(--bs-btn-hover-border-color) !important;
+  }
+}
+
+.btn-delete {
+  margin-left: 2px !important;
+}

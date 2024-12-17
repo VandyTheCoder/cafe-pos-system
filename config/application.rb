@@ -20,6 +20,6 @@ module CafePosSystem
     config.assets.precompile += %w[ .svg .eot .woff .ttf]
 
     config.active_record.default_timezone = :local
-    config.session_store :cookie_store, key: "health_management_session_#{Rails.env}"
+    config.session_store :cookie_store, key: "cafe_pos_session_#{Rails.env}"
   end
 end

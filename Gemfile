@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.3.5"
 
 gem "rails",                  "~> 7.2.1.2"
-gem "pg",                     "~> 1.2"
+gem "pg",                     "~> 1.5"
 gem "puma",                   ">= 5.0"
 gem "jquery-rails",           "~> 4.6"
 gem "coffee-script",          "~> 2.4", ">= 2.4.1"

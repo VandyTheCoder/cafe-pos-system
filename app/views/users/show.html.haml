@@ -7,9 +7,7 @@
   Edit
 
 - if !@user.is_super_admin?
-  = link_to @user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger m-l-10" do
-    %i.ti.ti-trash
-    Delete
+  = render "partials/delete_modal", object_id: @user.id, path: user_path(@user)
 
 %br/
 %br/

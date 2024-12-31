@@ -88,7 +88,7 @@ GEM
     bootstrap5-kaminari-views (0.0.1)
       kaminari (>= 0.13)
       rails (>= 3.1)
-    brakeman (6.2.2)
+    brakeman (7.0.0)
       racc
     builder (3.3.0)
     capybara (3.40.0)
@@ -416,7 +416,7 @@ DEPENDENCIES
   bootsnap
   bootstrap (~> 5.3, >= 5.3.3)
   bootstrap5-kaminari-views
-  brakeman (~> 6.2.2)
+  brakeman (~> 7.0.0)
   capybara
   cocoon (~> 1.2, >= 1.2.15)
   coffee-script (~> 2.4, >= 2.4.1)

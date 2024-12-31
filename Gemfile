@@ -29,7 +29,7 @@ gem "prawn-table",            "~> 0.2.2"
 
 group :development, :test do
   gem "debug",                                platforms: %i[ mri windows ], require: "debug/prelude"
-  gem "brakeman",             "~> 6.2.2",     require: false
+  gem "brakeman",             "~> 7.0.0",     require: false
   gem "rubocop-rails-omakase",                require: false
   gem "pry-rails",            "~> 0.3.11"
 end

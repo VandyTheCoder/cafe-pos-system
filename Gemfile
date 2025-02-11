@@ -21,7 +21,7 @@ gem "bootsnap",                               require: false
 gem "datagrid",               "~> 1.8", ">= 1.8.2"
 gem "kaminari"
 gem "bootstrap5-kaminari-views"
-gem "image_processing",       "~> 1.13"
+gem "image_processing",       "~> 1.14"
 gem "cocoon",                 "~> 1.2", ">= 1.2.15"
 gem "ostruct",                "~> 0.6.1"
 gem "prawn",                  "~> 2.5"
